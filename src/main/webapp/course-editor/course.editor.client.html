@@ -3,35 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>Course Editor</title>
-    <link href="course-editor.stylesheet.client.css" rel="stylesheet"/>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          rel="stylesheet"/>
+    <link href="../css/styles.css"
+          rel="stylesheet"/>
+    <link href="course-editor.stylesheet.client.css"
+          rel="stylesheet"/>
 </head>
 <body>
-<h1>  Course Editor</h1>
-<h2> Module List</h2>
-<h3> Lessons</h3>
+<div class="container-fluid">
+    <h1>
+        Course Editor
+    </h1>
 
-<ul>
-    <li> Moudle 1</li>
-    <li> Moudle 2</li>
-    <li> Moudle 3</li>
-    <li> Moudle 4</li>
+    <div class="row">
+        <div class="col-4">
+            <h2 id="wbdv-module-list">Module List</h2>
 
-</ul>
+            <ul class="list-group">
+                <li class="list-group-item">Module 1</li>
+                <li class="list-group-item">Module 2</li>
+                <li class="list-group-item">Module 3</li>
+                <li class="list-group-item">Module 4</li>
+                <li class="list-group-item">Module 5</li>
+            </ul>
 
-<h4> Lessons</h4>
+            <p class="wbdv-bold">
+                Lorem ipsum
+            </p>
 
-<h4> Topics </h4>
+        </div>
+        <div class="col-8">
+            <h2>Lessons</h2>
 
-<ul>
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Lesson 1
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        Lesson 2
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Lesson 3
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        Lesson 4
+                    </a>
+                </li>
+            </ul>
 
-    <li> Topic 1 </li>
-    <li> Topic 2 </li>
-    <li> Topic 3 </li>
-    <li> Topic 4 </li>
+            <h3>Topics</h3>
 
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Topic 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Topic 4</a>
+                </li>
+            </ul>
 
-</ul>
+            <span class="wbdv-bold">
+            Widgets
+        </span>
 
+        </div>
+    </div>
 
+</div>
 </body>
 </html>
