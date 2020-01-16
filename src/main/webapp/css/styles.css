@@ -1,8 +1,12 @@
 h1 {
-color: white;
-background-color: red;
+    color: wheat;
+    background-color: grey;
 }
 
+
+h2 {
+    background-color: grey;
+}
 
 .wd-top-right{
     color: red; position: fixed;
