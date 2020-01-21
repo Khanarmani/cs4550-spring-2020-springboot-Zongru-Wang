@@ -88,3 +88,30 @@ h2 {
 .widget-dropdown{
     margin-right: 10px;
 }
+
+.heading-input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.heading-preview {
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 50%;
+    font-size: xx-large;
+
+}
+
+.heading-text {
+    margin-right: 5px;
+    margin-left: 5px;
+    width: 50%;
+    font-size: xx-large;
+
+}
+
+
+.wd-bottom-right {
+     position: fixed;
+    bottom:10px; right: 10px;
+}
