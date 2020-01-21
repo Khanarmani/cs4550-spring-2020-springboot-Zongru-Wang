@@ -1,0 +1,90 @@
+h1 {
+    color: black;
+    background-color: grey;
+}
+h2 {
+    background-color: grey;
+}
+#wbdv-module-list {
+    background-color: yellow;
+}
+.wbdv-bold {
+    font-weight: bolder;
+}
+.wbdv-module {
+    background-color: lightgray;
+}
+.wbdv-module.wbdv-selected {
+    background-color: darkgray;
+}
+
+.client-editor-nav {
+    height: 60px;
+}
+
+
+.list-group-item-name {
+    width: 91%;
+}
+
+.list-group-item {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: rgba(245, 245, 245, 0.48);
+}
+
+.list-group-item:hover{
+    background-color: #4285F4;
+}
+
+.editor-modules {
+    padding-bottom: 30%;
+}
+
+.nav-pills .nav-link:not(.active) {
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: rgba(0, 0, 250, 0.5);
+    color: white;
+}
+
+.nav-pills .nav-link {
+    background-color: rgba(0, 0, 250, 0.2);
+    color: white;
+}
+
+.save-switch {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 70%;
+    align-items: center;
+}
+
+.btn-success {
+    margin-right: 10px;
+}
+
+.heading-widget {
+    margin-right: 5px;
+    width: 50%;
+    font-size: xx-large;
+
+}
+
+.fa-caret-square-up {
+     margin-right: 5px;
+ }
+
+
+.fa-caret-square-down {
+    margin-right: 10px;
+}
+
+.heading-row {
+    align-items: center;
+}
+
+.widget-dropdown{
+    margin-right: 10px;
+}
