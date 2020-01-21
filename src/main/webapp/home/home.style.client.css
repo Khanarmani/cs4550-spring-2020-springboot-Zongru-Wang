@@ -16,11 +16,10 @@
     height: 65px;
 }
 
-
 .homepage-header{
     margin-left: 0px;
     margin-bottom: 15px;
-    background-color: grey;
+    background-color: lightgray;
     display: flex;
     align-items: center;
 }
