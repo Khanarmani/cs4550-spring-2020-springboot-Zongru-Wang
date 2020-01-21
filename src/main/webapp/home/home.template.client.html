@@ -39,7 +39,7 @@
 
             <! –– Label called course manger ––>
 
-                <label for="course-manger" class="navbar-brand wbdv-label wbdv-course-manager">
+                <label for="course-manger" class="navbar-brand wbdv-label wbdv-course-manager d-none d-sm-block">
                     Course Manger
                 </label>
 
@@ -55,16 +55,14 @@
                 <a href=""><i class="fas fa-plus-circle fa-2x wbdv-button wbdv-add-course"></i></a>
             </div>
 
-
-
         </nav>
 
     </div>
 
-    <span class="fa-stack fa-2x wd-bottom-right">
+    <a href="" class="wbdv-button wbdv-add-course"><span class="fa-stack fa-2x wd-bottom-right ">
  <i class="fas fa-circle fa-stack-2x"></i>
  <i class="fas fa-plus fa-stack-1x fa-inverse"></i>
-</span>
+</span></a>
 
 
 
@@ -72,7 +70,7 @@
 
 
 
-<div class="row form-group homepage-header">
+<div class="row form-group homepage-header d-none d-lg-block">
 
     <label class="title wbdv-header wbdv-title">Title</label>
 
@@ -93,15 +91,25 @@
 
 </div>
 
+
+</div>
+
+<div class="row form-group homepage-header d-block d-sx-block d-sm-block d-md-none d-lg-none">
+
+    <label class="title wbdv-header wbdv-title">Today</label>
+
+</div>
+
+
 <div class="container-fluid">
 <div class="row wbdv-row wbdv-course">
 
         <div class="course-icon">
-            <i class="fas fa-file-alt wbdv-row wbdv-icon"></i>
+            <a href=""><i class="fas fa-file-alt wbdv-row wbdv-icon"></i></a>
         </div>
         <div class="wbdv-row wbdv-title">CS5500 </div>
-        <div class="wbdv-row wbdv-owner">me</div>
-        <div class="wbdv-row wbdv-modified-date">6:45 PM</div>
+        <div class="wbdv-row wbdv-owner d-none d-lg-block">me</div>
+        <div class="wbdv-row wbdv-modified-date d-none d-lg-block">6:45 PM</div>
         <a href="" class="wbdv-row wbdv-button wbdv-delete"><i class="fas fa-trash-alt"></i></a>
 
 
@@ -110,52 +118,60 @@
 <div class="row wbdv-row wbdv-course">
 
     <div class="course-icon">
-        <i class="fas fa-file-alt wbdv-row wbdv-icon"></i>
+        <a href=""><i class="fas fa-file-alt wbdv-row wbdv-icon"></i></a>
     </div>
     <div class="wbdv-row wbdv-title">CS4400 </div>
-    <div class="wbdv-row wbdv-owner">me</div>
-    <div class="wbdv-row wbdv-modified-date">6:47 PM</div>
+    <div class="wbdv-row wbdv-owner d-none d-lg-block">me</div>
+    <div class="wbdv-row wbdv-modified-date d-none d-lg-block">6:47 PM</div>
     <a href="" class="wbdv-row wbdv-button wbdv-delete"><i class="fas fa-trash-alt"></i></a>
 
 </div>
 
-    <div class="row form-group homepage-header">
+</div>
+
+    <div class="row form-group homepage-header d-none d-sm-block">
 
     <label class="title wbdv-header wbdv-title">Yesterday</label>
 
 </div>
 
+
+    <div class="container-fluid">
 <div class="row wbdv-row wbdv-course">
 
     <div class="course-icon">
-        <i class="fas fa-file-alt wbdv-row wbdv-icon"></i>
+        <a href=""><i class="fas fa-file-alt wbdv-row wbdv-icon"></i></a>
     </div>
     <div class="wbdv-row wbdv-title">CS4400 </div>
-    <div class="wbdv-row wbdv-owner">me</div>
-    <div class="wbdv-row wbdv-modified-date">January 20 2020</div>
+    <div class="wbdv-row wbdv-owner d-none d-lg-block">me</div>
+    <div class="wbdv-row wbdv-modified-date d-none d-lg-block">January 20 2020</div>
     <a href="" class="wbdv-row wbdv-button wbdv-delete"><i class="fas fa-trash-alt"></i></a>
 
 </div>
 
 
+    </div>
+    <div class="row form-group homepage-header">
 
-<div class="row form-group homepage-header">
+        <label class="title wbdv-header wbdv-title">Previous 7 days</label>
 
-    <label class="title wbdv-header wbdv-title">Previous 7 days</label>
+    </div>
 
-</div>
-
+    <div class="container-fluid">
 <div class="row wbdv-row wbdv-course">
 
     <div class="course-icon">
-        <i class="fas fa-file-alt wbdv-row wbdv-icon"></i>
+        <a href=""><i class="fas fa-file-alt wbdv-row wbdv-icon"></i></a>
     </div>
     <div class="wbdv-row wbdv-title">EECE 2160 </div>
-    <div class="wbdv-row wbdv-owner">me</div>
-    <div class="wbdv-row wbdv-modified-date">January 12 2020</div>
+    <div class="wbdv-row wbdv-owner d-none d-lg-block">me</div>
+    <div class="wbdv-row wbdv-modified-date d-none d-lg-block">January 12 2020</div>
     <a href="" class="wbdv-row wbdv-button wbdv-delete"><i class="fas fa-trash-alt"></i></a>
 
 </div>
+    </div>
+
+
 </div>
 
 </body>
