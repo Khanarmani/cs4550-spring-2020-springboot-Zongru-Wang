@@ -17,7 +17,7 @@
     <div class="row">
         <label class="col-5"></label>
 
-        <div class="alert alert-primary" role="alert">
+        <div class="alert alert-primary wbdv-message" role="alert">
             Successfully updated your profile!
         </div>
     </div>
@@ -27,7 +27,16 @@
             Username
         </label>
         <div class="col-8">
-            <input id="user-name-label" value="Alice" readonly type="text" class="form-control"/>
+            <input id="user-name-label" value="Alice" readonly type="text" class="form-control wbdv-field wbdv-username"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <label class="col-4" for="user-password-label">
+            Password
+        </label>
+        <div class="col-8">
+            <input id="user-password-label" placeholder="123%%Az" type="text" class="form-control wbdv-field wbdv-password"/>
         </div>
     </div>
 
@@ -36,7 +45,7 @@
             Phone
         </label>
         <div class="col-8">
-            <input id="user-phone-label" type="number" placeholder="555-123-4324" class="form-control"/>
+            <input id="user-phone-label" type="number" placeholder="555-123-4324" class="form-control wbdv-field wbdv-phone"/>
         </div>
     </div>
 
@@ -45,7 +54,7 @@
             Email
         </label>
         <div class="col-8">
-            <input id="user-email-label" type="email" placeholder="alice@wonderland.com" class="form-control"/>
+            <input id="user-email-label" type="email" placeholder="alice@wonderland.com" class="form-control wbdv-field wbdv-email"/>
         </div>
     </div>
 
@@ -72,7 +81,7 @@
                 Date of Birth
             </label>
             <div class="col-8">
-                <input id="user-dob-label" type="date" placeholder="mm/dd/yyyy" class="form-control"/>
+                <input id="user-dob-label" type="date" placeholder="mm/dd/yyyy" class="form-control wbdv-field wbdv-dob"/>
             </div>
         </div>
 
@@ -81,11 +90,10 @@
 <div class="form-group row">
     <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-8">
-        <a href="../profile/profile.template.client.html" class="btn btn-primary btn-block wbdv-button wbdv-login">
+        <a href="../profile/profile.template.client.html" class="btn btn-primary btn-block wbdv-button wbdv-update">
             Update</a>
-        <a href="../home/home.template.client.html" class="btn btn-secondary btn-block wbdv-button wbdv-cancel">
+        <a href="../home/home.template.client.html" class="btn btn-secondary btn-block wbdv-button wbdv-logout">
             Logout</a>
-
     </div>
 </div>
 

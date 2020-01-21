@@ -1,18 +1,82 @@
-.wbdv-title {
-    margin: 200px;
-}
+
 
 .wd-bottom-right {
     color: red; position: fixed;
-    bottom:10px; right: 10px;}
-
-.wbdv-hamburger {
-    margin: 1000px;
-    left: 50px;
+    bottom:10px; right: 10px;
 }
 
+
+
+.wbdv-hamburger{
+    margin-left: 25px ;
+    width: 50px;
+}
+
+.home-navbar {
+    height: 65px;
+}
+
+
+.homepage-header{
+    margin-left: 0px;
+    margin-bottom: 15px;
+    background-color: grey;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    width: 30%;
+}
+
+.wbdv-owner {
+    width: 20%;
+}
+
+.wbdv-last-modified {
+    width: 20%;
+}
+.wbdv-list-layout {
+    width: 10%;
+}
+.wbdv-grid-layout {
+    width: 10%;
+}
+
+.homepage-nav {
+    width: 10px;
+}
+
+.wbdv-course-manager {
+    width: 10%;
+}
+
+.wbdv-row {
+    margin-bottom: 5px;
+}
+
+
+.wbdv-new-course {
+    width: 40%;
+}
+
+.course-icon {
+    margin-left: 18px;
+    width: 1%;
+}
 .wbdv-title {
-
-    left: 100px;
+    width: 30%;
 
 }
+
+.wbdv-owner{
+    width: 10%;
+}
+
+.wbdv-modified-date{
+    width: 20%;
+}
+.wbdv-course-manager {
+    width: 5%;
+}
+
