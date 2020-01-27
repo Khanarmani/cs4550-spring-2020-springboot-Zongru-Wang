@@ -3,16 +3,17 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
     <title>User Admin</title>
-    <link rel="stylesheet" href=
-            "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href=
-            "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link href="user-admin.style.client.css" rel="stylesheet" />
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="admin-user.service.client.js"></script>
-    <script src="admin-user.controller.client.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../services/user.service.client.js"></script>
+    <script src="user-admin.controller.client.js"></script>
+    <script src="../models/user.model.client.js"></script>
 </head>
 
 
@@ -45,15 +46,16 @@
             <option value="ADMIN">Admin</option>
         </select></td>
         <td><span class="float-right" style="white-space: nowrap">
-      <i class="fa-2x fa fa-search wbdv-search"></i> <i
-                class="fa-2x fa fa-plus wbdv-create"></i> <i
-                class="fa-2x fa fa-check wbdv-update"></i>
-  </span></td>
+            <i class="fa-2x fa fa-search wbdv-search"></i>
+            <button id="createBtn"> <i class="fa-2x fa fa-plus wbdv-create "></i> </button>
+            <i class="fa-2x fa fa-check wbdv-update"></i>
+            </span>
+        </td>
     </tr>
 
 
-    <tbody class="wbdv-tbody">
-    <tr class="wbdv-template wbdv-user wbdv-hidden">
+    <tbody class="wbdv-tbody" id="tbody">
+    <tr class="wbdv-template wbdv-user wbdv-hidden" id="userRowTemplate">
         <td class="wbdv-username">ada</td>
         <td>&nbsp;</td>
         <td class="wbdv-first-name">Ada</td>
@@ -66,7 +68,12 @@
         </span>
         </td>
     </tr>
+
+
+
+
     </tbody>
+
 </table>
 
 
