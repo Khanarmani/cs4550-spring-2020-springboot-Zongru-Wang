@@ -3,20 +3,10 @@
     var $removeBtn, $editBtn, $createBtn;
     var $firstNameFld, $lastNameFld, $roleFld;
     var $userRowTemplate, $tbody;
+    var $updateBtn;
     var userService = new AdminUserServiceClient();
 
-    let $userList
-
-    let users = [
-        {"username": 'alice',
-         "password": '%$6646123',
-         "firstName": 'Ash',
-         "lastName": 'N',
-            "role": 'FACULTY'}
-    ]
-
-
-
+    let users = [];
 
     function createUser() {
         const newUser = new User();
@@ -24,24 +14,18 @@
         newUser.setPassword($passwordFld.val());
         newUser.setFirstName($firstNameFld.val());
         newUser.setLastName($lastNameFld.val());
-        newUser.setRole($roleFld.val())
+        newUser.setRole($roleFld.val());
 
-
-
-        $usernameFld.val("")
-
-        $firstNameFld.val("")
-        $lastNameFld.val("")
-        $roleFld.val("")
+        $usernameFld.val("");
+        $passwordFld.val("");
+        $firstNameFld.val("");
+        $lastNameFld.val("");
+        $roleFld.val("Faculty");
 
         userService.createUser(newUser)
             .then((actualUser) => {
-                 // users.push(actualUser)
-                 // renderUsers()
                 findAllUsers()
             })
-
-
 
     }
 
@@ -51,74 +35,128 @@
             .findAllUsers()
             .then(theusers => {
                 users = theusers
-                renderUsers()
+                renderUsers(theusers)
             })
     }
 
 
-    function findUserById() {  }
+    function findUserById(id) {
+        userService.findUserById(id)
+            .then((actualuser) => {
+                renderUser(actualuser)
+            })
+    }
 
 
-    function deleteUser() {  }
+    function deleteUser(index) {
+        let user = users[index];
+        let userId = user._id;
+
+        userService.deleteUser(userId)
+            .then(response => {
+                users.splice(index, 1);
+                renderUsers(users);
+            })
+    }
+
+    let currentUserIndex = -1;
+
+    function selectUser(userIndex) {
+        currentUserIndex = userIndex;
+        let user = users[userIndex];
+        let userid = user._id;
+
+        userService
+            .findUserById(userid)
+            .then(actucalUser => {
+                $usernameFld.val(actucalUser.username);
+                $("#passwordFld").val("********");
+                $firstNameFld.val(actucalUser.firstName);
+                $lastNameFld.val(actucalUser.lastName);
+                $roleFld.val(actucalUser.role);
+            })
+
+    }
 
 
-    function selectUser() {  }
+    function updateUser() {
+        const updateUser = new User();
+        updateUser.setUsername($usernameFld.val());
+        updateUser.setLastName($lastNameFld.val());
+        updateUser.setFirstName($firstNameFld.val());
+        updateUser.setPassword($passwordFld.val());
+        updateUser.setRole($roleFld.val());
 
+        $usernameFld.val("");
+        $passwordFld.val("");
+        $firstNameFld.val("");
+        $lastNameFld.val("");
+        $roleFld.val("");
 
-    function updateUser() {  }
+        updateUser._id = users[currentUserIndex]._id;
+
+        userService.updateUser(updateUser._id, updateUser)
+            .then((actualUser) => {
+                findAllUsers()
+            })
+    }
 
     function renderUser(user) {
 
+        $tr = $("<tr class=\"wbdv-user wbdv-hidden\">");
+        $tr.append("<td class='wbdv-username'>" + user.username +"</td>>");
+        $tr.append("<td>&nbsp;</td>");
+        $tr.append("<td class='wbdv-first-name'>" + user.firstName + "</td>");
+        $tr.append("<td class='wbdv-last-name'>" + user.lastName + "</td>");
+        $tr.append("<td class='wbdv-role'>" + user.role + "</td>");
+
+        $span = $("<span class=\"float-right\">");
+        $span.append("<i id=\"wbdv-remove-" + user.username
+            + "\" class=\"btn fa-2x fa fa-times wbdv-remove\"></i>");
+        $span.append("<i id=\"wbdv-edit-" + user.username
+            + "\" class=\"btn fa-2x fa fa-pencil wbdv-edit\"></i>");
+        $tr.append($span);
+
+        $tbody.append($tr);
 
 
     }
 
     function renderUsers(users) {
-
-
+        $tbody.empty();
         for(let u in users) {
-            let user = users[u]
+            const user = users[u];
+            renderUser(user);
 
-            $removeBtn = $("<button>Delete</button>")
-            $removeBtn.click(() => deleteUser(u))
+            $removeBtn = $("#wbdv-remove-" + user.username);
+            $removeBtn.click(() => deleteUser(u));
+            $editBtn = $("#wbdv-edit-" + user.username);
+            $editBtn.click(() => selectUser(u));
 
-            $editBtn = $("<button>Edit</button>")
-            $editBtn.click(() => editUser(u))
-
-            $tr = $("<tr class=\"wbdv-template wbdv-user wbdv-hidden\">")
-            $td = $("<td>")
-            $td.append(user.username)
-            $td.append(user.password)
-            $td.append(user.firstName)
-            $td.append(user.lastName)
-            $td.append(user.role)
-
-            $span = $("<span class=\"float-right\">")
-
-            $span.append($removeBtn)
-            $span.append($editBtn)
-            $td.append($span)
-            $userList.append($li)
         }
-
 
     }
 
     function main() {
-        $userList = $("#userList")
-        $usernameFld = $("#usernameFld")
-        $firstNameFld = $("#firstNameFld")
-        $lastNameFld = $("#lastNameFld")
-        $roleFld = $("#roleFld")
+        $tbody = $("#tbody");
 
-        $createBtn = $("#createBtn")
-        $createBtn.click(createUser)
+        $usernameFld = $("#usernameFld");
+        $passwordFld = $("#passwordFld");
+        $firstNameFld = $("#firstNameFld");
+        $lastNameFld = $("#lastNameFld");
+        $roleFld = $("#roleFld");
+        $updateBtn = $("#updateButton");
+        $updateBtn.click(updateUser);
+
+
+        $createBtn = $("#createBtn");
+        $createBtn.click(createUser);
 
         userService
             .findAllUsers()
             .then(theusers => {
-                users = theusers
-                renderUsers()
+                users = theusers;
+                renderUsers(users)
             })
     }
 
