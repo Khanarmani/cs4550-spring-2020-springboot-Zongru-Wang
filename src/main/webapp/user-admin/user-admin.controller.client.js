@@ -6,7 +6,10 @@
     var $updateBtn;
     var userService = new AdminUserServiceClient();
 
+
+
     let users = [];
+
 
     function createUser() {
         const newUser = new User();
@@ -20,7 +23,7 @@
         $passwordFld.val("");
         $firstNameFld.val("");
         $lastNameFld.val("");
-        $roleFld.val("Faculty");
+        $roleFld.val("FACULTY");
 
         userService.createUser(newUser)
             .then((actualUser) => {
@@ -109,14 +112,13 @@
         $tr.append("<td class='wbdv-first-name'>" + user.firstName + "</td>");
         $tr.append("<td class='wbdv-last-name'>" + user.lastName + "</td>");
         $tr.append("<td class='wbdv-role'>" + user.role + "</td>");
-
         $span = $("<span class=\"float-right\">");
-        $span.append("<i id=\"wbdv-remove-" + user.username
+        $span.append("<i id=\"wbdv-remove-" + user._id
             + "\" class=\"btn fa-2x fa fa-times wbdv-remove\"></i>");
-        $span.append("<i id=\"wbdv-edit-" + user.username
+
+        $span.append("<i id=\"wbdv-edit-" + user._id
             + "\" class=\"btn fa-2x fa fa-pencil wbdv-edit\"></i>");
         $tr.append($span);
-
         $tbody.append($tr);
 
 
@@ -128,9 +130,9 @@
             const user = users[u];
             renderUser(user);
 
-            $removeBtn = $("#wbdv-remove-" + user.username);
+            $removeBtn = $("#wbdv-remove-" + user._id);
             $removeBtn.click(() => deleteUser(u));
-            $editBtn = $("#wbdv-edit-" + user.username);
+            $editBtn = $("#wbdv-edit-" + user._id);
             $editBtn.click(() => selectUser(u));
 
         }
@@ -151,6 +153,8 @@
 
         $createBtn = $("#createBtn");
         $createBtn.click(createUser);
+
+
 
         userService
             .findAllUsers()
