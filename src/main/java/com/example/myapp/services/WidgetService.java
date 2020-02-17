@@ -1,6 +1,6 @@
-package com.example.wbdvsp20jannunziserverjava.services;
+package com.example.myapp.services;
 
-import com.example.wbdvsp20jannunziserverjava.models.Widget;
+import com.example.myapp.models.Widget;
 
 import java.util.ArrayList;
 import java.util.List;

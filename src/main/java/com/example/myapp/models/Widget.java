@@ -1,4 +1,4 @@
-package com.example.wbdvsp20jannunziserverjava.models;
+package com.example.myapp.models;
 
 public class Widget {
     private String id;

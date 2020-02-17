@@ -1,7 +1,7 @@
-package com.example.wbdvsp20jannunziserverjava.controllers;
+package com.example.myapp.controllers;
 
-import com.example.wbdvsp20jannunziserverjava.models.Widget;
-import com.example.wbdvsp20jannunziserverjava.services.WidgetService;
+import com.example.myapp.models.Widget;
+import com.example.myapp.services.WidgetService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
