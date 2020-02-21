@@ -9,7 +9,6 @@ public class WidgetService {
     Map<String, List<Widget>> widgetList = new HashMap<>();
 
 
-
     public Widget createWidget(Widget widget) {
         if (widgetList.containsKey(widget.getTopicId())) {
             widget.setOrder(widgetList.get(widget.getTopicId()).size());
