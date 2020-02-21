@@ -7,6 +7,8 @@ public class Widget {
     private String topicId;
     private int size = 2;
 
+    private Integer order;
+
     public int getSize() {
         return size;
     }
@@ -18,6 +20,17 @@ public class Widget {
     public String getTopicId() {
         return topicId;
     }
+
+    public void setOrder(Integer order) {
+        this.order = order;
+    }
+
+
+    public Integer getOrder() {
+        return order;
+    }
+
+
 
     public void setTopicId(String topicId) {
         this.topicId = topicId;

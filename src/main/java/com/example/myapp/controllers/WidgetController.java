@@ -5,6 +5,7 @@ import com.example.myapp.services.WidgetService;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -38,7 +39,7 @@ public class WidgetController {
     }
 
     @GetMapping("/widgets")
-    public List<Widget> findAllWidgets() {
+    public Map<String, List<Widget>> findAllWidgets() {
         return service.findAllWidgets();
     }
 
@@ -48,14 +49,16 @@ public class WidgetController {
         return service.findWidgetsForTopic(topicId);
     }
 
-    @GetMapping("/w1")
-    public Widget getWidget() {
-        Widget w1 = new Widget("123", "Widget A", "PARAGRAPH");
-        return w1;
+
+    @PostMapping("/widgets/up")
+    public List<Widget> updateWidgetUp(
+            @RequestBody Widget widget) {
+        return service.updateWidgetUp(widget);
+    }
+    @PostMapping("/widgets/down")
+    public List<Widget> updateWidgetDown(
+            @RequestBody Widget widget) {
+        return service.updateWidgetDown(widget);
     }
 
-    @GetMapping("/hello")
-    public String sayHello() {
-        return "Hello World";
-    }
 }

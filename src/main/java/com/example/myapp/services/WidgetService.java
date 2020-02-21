@@ -1,77 +1,116 @@
 package com.example.myapp.services;
 
 import com.example.myapp.models.Widget;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WidgetService {
-    List<Widget> widgetList = new ArrayList<Widget>();
+    Map<String, List<Widget>> widgetList = new HashMap<>();
 
-    {
-        Widget w1 = new Widget("123", "WA", "HEADING");
-        Widget w2 = new Widget("234", "WB", "PARAGRAPH");
-        Widget w3 = new Widget("345", "WC","HEADING");
-        Widget w4 = new Widget("456", "WD", "PARAGRAPH");
-        Widget w5 = new Widget("567", "WE","HEADING");
 
-        w1.setTopicId("111");
-        w2.setTopicId("111");
 
-        w3.setTopicId("222");
-        w4.setTopicId("222");
-        w5.setTopicId("222");
-
-        widgetList.add(w1);
-        widgetList.add(w2);
-        widgetList.add(w3);
-        widgetList.add(w4);
-        widgetList.add(w5);
-    }
-
-    public Widget createWidget(
-            Widget newWidget) {
-        widgetList.add(newWidget);
-        return newWidget;
+    public Widget createWidget(Widget widget) {
+        if (widgetList.containsKey(widget.getTopicId())) {
+            widget.setOrder(widgetList.get(widget.getTopicId()).size());
+            widgetList.get(widget.getTopicId()).add(widget);
+        } else {
+            List<Widget> widgetList1 = new ArrayList<>();
+            widget.setOrder(0);
+            widgetList1.add(widget);
+            widgetList.put(widget.getTopicId(), widgetList1);
+        }
+        return widget;
     }
 
     public Widget findWidgetById(String wid) {
-        for(Widget w: widgetList) {
-            if(w.getId().equals(wid)) {
-                return w;
+        for (List<Widget> widgetList : widgetList.values()) {
+            for(int i = 0; i < widgetList.size(); i += 1)  {
+                if(widgetList.get(i).getId().equals(wid)) {
+                    return widgetList.get(i);
+                }
             }
         }
         return null;
     }
 
-    public List<Widget> findAllWidgets() {
+    public Map<String, List<Widget>> findAllWidgets() {
         return widgetList;
     }
 
     public List<Widget> findWidgetsForTopic(String topicId) {
-        List<Widget> results = new ArrayList<Widget>();
-        for(Widget w: widgetList) {
-            if(w.getTopicId().equals(topicId)) {
-                results.add(w);
+        if (widgetList.containsKey(topicId)) {
+            for (int i = 0; i < widgetList.get(topicId).size(); i += 1) {
+                widgetList.get(topicId).get(i).setOrder(i);
             }
+            return widgetList.get(topicId);
+        } else {
+            return new ArrayList<>();
         }
-        return results;
     }
 
     public int deleteWidget(String wid) {
-        widgetList = widgetList.stream()
-                .filter(w -> !w.getId().equals(wid)).collect(Collectors.toList());
+        for (List<Widget> widgetList : widgetList.values()) {
+            for(int i = 0; i < widgetList.size(); i += 1)  {
+                if(widgetList.get(i).getId().equals(wid)) {
+                    widgetList.remove(i);
+                    return 0;
+                }
+            }
+        }
         return 1;
     }
 
     public int updateWidget(String wid, Widget updatedWidget) {
-        for(int i=0; i<widgetList.size(); i++) {
-            if(widgetList.get(i).getId().equals(wid)) {
-                widgetList.set(i, updatedWidget);
-                return 1;
+        for (List<Widget> widgetList : widgetList.values()) {
+            for(int i = 0; i < widgetList.size(); i += 1)  {
+                if(widgetList.get(i).getId().equals(wid)) {
+                    widgetList.set(i, updatedWidget);
+                    return 1;
+                }
             }
         }
         return 0;
     }
+
+    public List<Widget> updateWidgetUp(Widget widget) {
+
+        String tid = widget.getTopicId();
+        // avoid the error
+        if (!widgetList.containsKey(tid)) {
+            return new ArrayList<>();
+        }
+
+        int order = widget.getOrder();
+
+        // if it can keep moving up, then move it
+        if (order > 0) {
+            // move uo the selected one
+            widgetList.get(tid).get(order).setOrder(order - 1);
+            // keep the one up to the selected one stay
+            widgetList.get(tid).get(order - 1).setOrder(order);
+            Collections.swap(widgetList.get(tid), order, order-1);
+        }
+        return widgetList.get(tid);
+    }
+
+    public List<Widget> updateWidgetDown(Widget widget) {
+        String tid = widget.getTopicId();
+        if (!widgetList.containsKey(tid)) {
+            return new ArrayList<>();
+        }
+        int order = widget.getOrder();
+
+
+        if (order < widgetList.get(tid).size() - 1) {
+            // Get the selected widget down
+            widgetList.get(tid).get(order).setOrder(order + 1);
+            // Keep the next of the selected stay
+            widgetList.get(tid).get(order + 1).setOrder(order);
+            Collections.swap(widgetList.get(tid), order, order+1);
+        }
+        return widgetList.get(tid);
+    }
+
+
 }
