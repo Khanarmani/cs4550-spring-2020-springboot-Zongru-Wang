@@ -52,6 +52,9 @@ public class WidgetService {
         for (List<Widget> widgetList : widgetList.values()) {
             for(int i = 0; i < widgetList.size(); i += 1)  {
                 if(widgetList.get(i).getId().equals(wid)) {
+
+                    widgetList.get(i).setOrder(widgetList.get(i).getOrder() - 1);
+
                     widgetList.remove(i);
                     return 0;
                 }
