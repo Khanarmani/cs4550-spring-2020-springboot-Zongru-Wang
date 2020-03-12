@@ -49,13 +49,7 @@ public class WidgetController {
         return service.deleteWidget(widgetId);
     }
 
-    @GetMapping("/api/widgets/create")
-    public Widget createWidgetNotRest() {
-        Widget newWidget = new Widget();
-        newWidget.setTitle("Not RESTful");
-        newWidget.setSize(45);
-        return service.createWidget(newWidget);
-    }
+
 
     @PostMapping("/api/topics/{topicId}/widgets")
     public Widget createWidget(
