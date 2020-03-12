@@ -1,6 +1,7 @@
 package com.example.myapp.repositories;
 
 import com.example.myapp.models.Widget;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -12,9 +13,10 @@ import java.util.List;
 public interface WidgetRepository
         extends CrudRepository<Widget, Integer> {
 
-    @Query("SELECT widget FROM Widget widget WHERE widget.id=:widgetId")
+    // added a oder by widget order in query field.
+    @Query("SELECT widget FROM Widget widget WHERE widget.id=:widgetId ORDER BY widget.widgetOrder")
     public Widget findWidgetById(
-            @Param("widgetId") int wid);
+            @Param("widgetId") Integer widgetId);
 
     @Query("SELECT widget FROM Widget widget")
     public List<Widget> findAllWidgets();
@@ -24,4 +26,17 @@ public interface WidgetRepository
     @Query("select widget from Widget widget where widget.topic.id=:tid")
     public List<Widget> findWidgetsForTopic(
             @Param("tid") int topicId);
+
+
+    // the update methods are through online resource and looked up and do the similar work.
+    @Modifying
+    @Query("UPDATE Widget widget SET widget.widgetOrder=:order WHERE widget.id=:widgetId")
+    public int updateWidgetOrder(@Param("widgetId") Integer widgetId, @Param("order") Integer order);
+
+    @Modifying
+    @Query("UPDATE Widget widget SET widget=:widget WHERE widget.id=:widgetId")
+    public int updateWidget(@Param("widget") Widget widget, @Param("widgetId") Integer widgetId);
+
+
+
 }

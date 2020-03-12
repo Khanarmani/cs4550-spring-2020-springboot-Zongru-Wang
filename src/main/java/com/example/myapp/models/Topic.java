@@ -12,6 +12,8 @@ public class Topic {
     private String title;
     private String lessonId;
 
+    private String description;
+
     @OneToMany(mappedBy = "topic")
     private List<Widget> widgets;
 
@@ -45,5 +47,13 @@ public class Topic {
 
     public void setWidgets(List<Widget> widgets) {
         this.widgets = widgets;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
