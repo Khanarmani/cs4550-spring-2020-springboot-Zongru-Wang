@@ -43,7 +43,11 @@ public class WidgetService {
     }
 
     public int updateWidget(int widgetId, Widget updatedWidget) {
-        widgetRepository.updateWidget(updatedWidget, widgetId);
+        Widget oldWidget = widgetRepository.findWidgetById(widgetId);
+        oldWidget.setTitle(updatedWidget.getTitle());
+        oldWidget.setSize(updatedWidget.getSize());
+        oldWidget.setwidgetOrder(updatedWidget.getwidgetOrder());
+        widgetRepository.save(oldWidget);
         return 1;
     }
 

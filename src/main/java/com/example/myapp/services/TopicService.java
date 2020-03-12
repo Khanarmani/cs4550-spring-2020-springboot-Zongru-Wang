@@ -38,7 +38,13 @@ public class TopicService {
         return 1;
     }
 
-    public int updateTopic(int tid, Topic newTopic) {
+    public int updateTopic(Integer topicId, Topic updatedTopic) {
+
+        Topic oldTopic = topicRepository.findTopicById(topicId);
+        oldTopic.setTitle(updatedTopic.getTitle());
+        oldTopic.setDescription(updatedTopic.getDescription());
+        oldTopic.setWidgets(updatedTopic.getWidgets());
+        topicRepository.save(oldTopic);
         return 1;
     }
 

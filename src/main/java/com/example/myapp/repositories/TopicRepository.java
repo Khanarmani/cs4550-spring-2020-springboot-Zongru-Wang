@@ -22,9 +22,6 @@ public interface TopicRepository
     public Topic findTopicById(@Param("topicId") Integer topicId);
 
 
-    @Modifying
-    @Query("UPDATE Topic topic SET topic=:topic WHERE topic.id=:topicId")
-    public int updateTopic(@Param("topic") Topic topic, @Param("topicId") Integer topicId);
 }
 
 

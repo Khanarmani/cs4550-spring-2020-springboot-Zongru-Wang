@@ -33,9 +33,6 @@ public interface WidgetRepository
     @Query("UPDATE Widget widget SET widget.widgetOrder=:order WHERE widget.id=:widgetId")
     public int updateWidgetOrder(@Param("widgetId") Integer widgetId, @Param("order") Integer order);
 
-    @Modifying
-    @Query("UPDATE Widget widget SET widget=:widget WHERE widget.id=:widgetId")
-    public int updateWidget(@Param("widget") Widget widget, @Param("widgetId") Integer widgetId);
 
 
 
