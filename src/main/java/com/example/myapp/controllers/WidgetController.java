@@ -1,64 +1,83 @@
 package com.example.myapp.controllers;
 
 import com.example.myapp.models.Widget;
+import com.example.myapp.services.TopicService;
 import com.example.myapp.services.WidgetService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @CrossOrigin(origins = "*")
 public class WidgetController {
 
-    WidgetService service = new WidgetService();
+    @Autowired
+    WidgetService service;
 
-    @PostMapping("/api/widgets")
-    public Widget createWidget(
-            @RequestBody Widget newWidget) {
+    @Autowired
+    TopicService topicService;
+
+    @GetMapping("/api/widgets/{wid}/update")
+    public int updateWidgetNotRestfulBad(
+            @PathVariable("wid") int widgetId) {
+        Widget widget = new Widget();
+        widget.setTitle("New and Improved Title");
+        widget.setSize(123);
+        return service.updateWidget(widgetId, widget);
+    }
+
+    @PutMapping("/api/widgets/{wid}")
+    public int updateWidget(@PathVariable("wid") int widgetId,
+                            @RequestBody Widget widget) {
+        return service.updateWidget(widgetId, widget);
+    }
+
+    @GetMapping("/api/widgets/{wid}/delete")
+    public int deleteWidgetNotRestful(@PathVariable("wid") int widgetId) {
+        return service.deleteWidget(widgetId);
+    }
+
+    @DeleteMapping("/api/widgets/{wid}")
+    public int deleteWidget(@PathVariable("wid") int widgetId) {
+        return service.deleteWidget(widgetId);
+    }
+
+    @GetMapping("/api/widgets/create")
+    public Widget createWidgetNotRest() {
+        Widget newWidget = new Widget();
+        newWidget.setTitle("Not RESTful");
+        newWidget.setSize(45);
         return service.createWidget(newWidget);
     }
 
-    @DeleteMapping("/api/widgets/{widgetId}")
-    public int deleteWidget(
-            @PathVariable("widgetId") String wid) {
-        return service.deleteWidget(wid);
-    }
-
-    @PutMapping("/api/widgets/{widgetId}")
-    public int updateWidget(
-            @PathVariable("widgetId") String wid,
-            @RequestBody Widget updatedWidget) {
-        return service.updateWidget(wid, updatedWidget);
-    }
-
-    @GetMapping("/api/widgets/{widgetId}")
-    public Widget findWidgetById(
-            @PathVariable("widgetId") String wid) {
-        return service.findWidgetById(wid);
+    @PostMapping("/api/topics/{topicId}/widgets")
+    public Widget createWidget(
+            @PathVariable("topicId") Integer topicId,
+            @RequestBody Widget newWidget) {
+        return topicService.createWidgetForTopic(topicId, newWidget);
+//        return service.createWidget(topicId, newWidget);
     }
 
     @GetMapping("/api/widgets")
-    public Map<String, List<Widget>> findAllWidgets() {
+    public List<Widget> findAllWidgets() {
         return service.findAllWidgets();
     }
 
+    @GetMapping("/api/widgets/{widgetId}")
+    public Widget findWidgetById(@PathVariable("widgetId") int wid) {
+        return service.findWidgetById(wid);
+    }
+
     @GetMapping("/api/topics/{tid}/widgets")
-    public List<Widget> findWidgetsForTopic(
-            @PathVariable("tid") String topicId) {
-        return service.findWidgetsForTopic(topicId);
-    }
-
-
-    @PostMapping("/api/widgets/up")
-    public List<Widget> updateWidgetUp(
-            @RequestBody Widget widget) {
-        return service.updateWidgetUp(widget);
-    }
-    @PostMapping("/api/widgets/down")
-    public List<Widget> updateWidgetDown(
-            @RequestBody Widget widget) {
-        return service.updateWidgetDown(widget);
+    public List<Widget> findWidgetsForTopic(@PathVariable("tid") int tid) {
+        return service.findWidgetsForTopic(tid);
     }
 
 }

@@ -1,13 +1,42 @@
 package com.example.myapp.models;
 
+import javax.persistence.*;
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "widgets")
 public class Widget {
-    private String id;
-    private String title;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+    private String title = "New Widget";
     private String type = "HEADING";
-    private String topicId;
+    private String text = "New Widget";
     private int size = 2;
 
-    private Integer order;
+    @ManyToOne
+    @JsonIgnore
+    private Topic topic;
+
+    public Topic getTopic() {
+        return topic;
+    }
+
+    public void setTopic(Topic topic) {
+        this.topic = topic;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public int getSize() {
         return size;
@@ -17,38 +46,11 @@ public class Widget {
         this.size = size;
     }
 
-    public String getTopicId() {
-        return topicId;
-    }
-
-    public void setOrder(Integer order) {
-        this.order = order;
-    }
-
-
-    public Integer getOrder() {
-        return order;
-    }
-
-
-
-    public void setTopicId(String topicId) {
-        this.topicId = topicId;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -60,12 +62,11 @@ public class Widget {
         this.title = title;
     }
 
-    public Widget(String id, String title, String type) {
-        this.id = id;
-        this.title = title;
-        this.type = type;
+    public String getType() {
+        return type;
     }
 
-    public Widget() {
+    public void setType(String type) {
+        this.type = type;
     }
 }
