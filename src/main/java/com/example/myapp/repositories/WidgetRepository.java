@@ -23,15 +23,10 @@ public interface WidgetRepository
 
     // "SELECT * FROM widgets WHERE topic_id=topicId
     //@Query(value = "SELECT * FROM widgets WHERE topic_id=:tid", nativeQuery = true)
-    @Query("select widget from Widget widget where widget.topic.id=:tid")
+    @Query("select widget from Widget widget where widget.topic.id=:tid ORDER BY widget.widgetOrder")
     public List<Widget> findWidgetsForTopic(
             @Param("tid") int topicId);
 
-
-    // the update methods are through online resource and looked up and do the similar work.
-    @Modifying
-    @Query("UPDATE Widget widget SET widget.widgetOrder=:order WHERE widget.id=:widgetId")
-    public int updateWidgetOrder(@Param("widgetId") Integer widgetId, @Param("order") Integer order);
 
 
 

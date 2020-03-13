@@ -1,5 +1,6 @@
 package com.example.myapp.services;
 
+import com.example.myapp.models.Topic;
 import com.example.myapp.models.Widget;
 
 import java.util.*;
@@ -28,25 +29,14 @@ public class WidgetService {
         return 1;
     }
 
-    public Widget createWidget(Integer topicId, Widget widget) {
-        widget.setTopic(topicRepository.findTopicById(topicId));
-        widget.setSize(1);
-        List<Widget> widgetList = this.findWidgetsForTopic(topicId);
 
-
-        if (widgetList.size() <= 0) {
-            widget.setwidgetOrder(0);
-        } else {
-            widget.setwidgetOrder(widgetList.size());
-        }
-        return widgetRepository.save(widget);
-    }
 
     public int updateWidget(int widgetId, Widget updatedWidget) {
         Widget oldWidget = widgetRepository.findWidgetById(widgetId);
         oldWidget.setTitle(updatedWidget.getTitle());
         oldWidget.setSize(updatedWidget.getSize());
-        oldWidget.setwidgetOrder(updatedWidget.getwidgetOrder());
+        oldWidget.setType(updatedWidget.getType());
+        //oldWidget.setwidgetOrder(updatedWidget.getwidgetOrder());
         widgetRepository.save(oldWidget);
         return 1;
     }
@@ -61,7 +51,6 @@ public class WidgetService {
 
     public Widget findWidgetById(int wid) {
         return widgetRepository.findWidgetById(wid);
-//        return widgetRepository.findById(wid).get();
     }
 
 
@@ -75,27 +64,34 @@ public class WidgetService {
             for (int i = 0; i <= widgetsForTopic.size(); i += 1) {
                 if (i == order - 1) {
                     Widget newWidget = widgetsForTopic.get(order - 1);
-                    widgetRepository.updateWidgetOrder(newWidget.getId(), order);
-                    widgetRepository.updateWidgetOrder(widget.getId(), order - 1);
+                    newWidget.setwidgetOrder(order+1);
+                    widget.setwidgetOrder(order-1);
+                    widgetRepository.save(newWidget);
+                    widgetRepository.save(widget);
                 }
             }
         }
         return widgetRepository.findWidgetsForTopic(topicId);
     }
 
-    public List<Widget> updateWidgetDown(Widget widget) {
-        int topicId = widget.getTopic().getId();
+    public List<Widget> updateWidgetDown(Integer topicId, Widget widget) {
         int order = widget.getwidgetOrder();
+        Topic topic = topicRepository.findTopicById(topicId);
         List<Widget> widgetList = widgetRepository.findWidgetsForTopic(topicId);
         // if there are widgets in this topic and the widget is not the lowest
         if (widgetList.size() > 0 && order < widgetList.size() - 1) {
-            for (int i = 0; i <= widgetList.size(); i += 1) {
-                if (i == order) {
+
                     Widget newWidget = widgetList.get(order + 1);
-                    widgetRepository.updateWidgetOrder(newWidget.getId(), order);
-                    widgetRepository.updateWidgetOrder(widget.getId(), order + 1);
-                }
-            }
+
+                    newWidget.setwidgetOrder(order);
+
+                    // some questions here to ask, if I don't set the topic, the topicId will be zero
+                    // after update... Found the bug but don't know why.
+                    newWidget.setTopic(topic);
+                    widget.setTopic(topic);
+                    widget.setwidgetOrder(order + 1);
+                    widgetRepository.save(newWidget);
+                    widgetRepository.save(widget);
         }
         return widgetRepository.findWidgetsForTopic(topicId);
     }

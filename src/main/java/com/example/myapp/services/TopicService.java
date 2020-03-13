@@ -58,6 +58,7 @@ public class TopicService {
             Widget newWidget) {
         Topic topic = topicRepository.findById(tid).get();
         newWidget.setTopic(topic);
+        newWidget.setwidgetOrder(widgetRepository.findWidgetsForTopic(tid).size());
         return widgetRepository.save(newWidget);
     }
 
