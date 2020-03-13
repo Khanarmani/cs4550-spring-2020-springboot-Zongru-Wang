@@ -74,9 +74,9 @@ public class WidgetController {
         return service.findWidgetsForTopic(tid);
     }
 
-    @PostMapping("/api/widgets/up")
-    public List<Widget> updateWidgetUp(@RequestBody Widget widget) {
-        return service.updateWidgetUp(widget);
+    @PostMapping("/api/topics/{topicId}/widgets/up")
+    public List<Widget> updateWidgetUp(@PathVariable("topicId") Integer topicId, @RequestBody Widget widget) {
+        return service.updateWidgetUp(topicId, widget);
     }
 
     @PostMapping("/api/topics/{topicId}/widgets/down")

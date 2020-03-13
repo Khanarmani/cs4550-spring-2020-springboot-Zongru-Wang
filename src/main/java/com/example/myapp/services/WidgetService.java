@@ -36,7 +36,9 @@ public class WidgetService {
         oldWidget.setTitle(updatedWidget.getTitle());
         oldWidget.setSize(updatedWidget.getSize());
         oldWidget.setType(updatedWidget.getType());
-        //oldWidget.setwidgetOrder(updatedWidget.getwidgetOrder());
+        oldWidget.setValue(updatedWidget.getValue());
+        oldWidget.setWidth(updatedWidget.getWidth());
+        oldWidget.setSrc(updatedWidget.getSrc());
         widgetRepository.save(oldWidget);
         return 1;
     }
@@ -54,22 +56,23 @@ public class WidgetService {
     }
 
 
-    public List<Widget> updateWidgetUp(Widget widget) {
-        int topicId = widget.getTopic().getId();
+    public List<Widget> updateWidgetUp(Integer topicId, Widget widget) {
+        Topic topic = topicRepository.findTopicById(topicId);
         int order = widget.getwidgetOrder();
 
         List<Widget> widgetsForTopic = widgetRepository.findWidgetsForTopic(topicId);
 
         if (widgetsForTopic.size() > 0 && order > 0) {
-            for (int i = 0; i <= widgetsForTopic.size(); i += 1) {
-                if (i == order - 1) {
+
                     Widget newWidget = widgetsForTopic.get(order - 1);
-                    newWidget.setwidgetOrder(order+1);
+                    newWidget.setwidgetOrder(order);
+                    newWidget.setTopic(topic);
+                    widget.setTopic(topic);
                     widget.setwidgetOrder(order-1);
+
                     widgetRepository.save(newWidget);
                     widgetRepository.save(widget);
-                }
-            }
+
         }
         return widgetRepository.findWidgetsForTopic(topicId);
     }
